@@ -8,7 +8,7 @@ const locationButton = document.querySelector(".location-btn");
 const currentWeatherDiv = document.querySelector(".current-weather");
 const weatherCardsDiv = document.querySelector(".weather-cards");
 
-const W_API_KEY = API_KEY;
+const API_KEY = process.env.API_KEY;
 
 const createWeatherCard = (cityName,weatherItem,index) => {
     if (index === 0) {
@@ -39,7 +39,7 @@ const createWeatherCard = (cityName,weatherItem,index) => {
 }
 
 const getWeatherDetils = (cityName, lat, lon) => {
-    const WEATHER_API_URL = 'http://api.openweathermap.org/data/2.5/forecast/?lat='+lat+'&lon='+lon+'&appid='+W_API_KEY;
+    const WEATHER_API_URL = 'http://api.openweathermap.org/data/2.5/forecast/?lat='+lat+'&lon='+lon+'&appid='+API_KEY;
    
     fetch(WEATHER_API_URL).then(res => res.json()).then(data => {
 
@@ -80,7 +80,7 @@ const getWeatherDetils = (cityName, lat, lon) => {
 const getCityCoordinates = () => {
     const cityName = cityInput.value.trim();
     if (!cityName) return ; 
-    const GEO_CODING_API_URL = 'http://api.openweathermap.org/geo/1.0/direct?q='+cityName+'&limit=1&appid='+W_API_KEY;
+    const GEO_CODING_API_URL = 'http://api.openweathermap.org/geo/1.0/direct?q='+cityName+'&limit=1&appid='+API_KEY;
     
     // gettin lat lon and name from api
     fetch(GEO_CODING_API_URL).then(res => res.json()).then(data => {
